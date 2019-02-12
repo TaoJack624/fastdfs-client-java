@@ -1,3 +1,6 @@
+Version 1.28  2019-02-12
+  * Update pom.xml
+  * Update javadoc
 
 Version 1.26  2017-04-17
   * IniFileReader use getResourceAsStream first

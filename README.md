@@ -1,36 +1,64 @@
+> Based on happyfish100/fastdfs-client-java
+> With more feature & bugs fixed.
+> And mvnrepository.com released.
 
 # FastDFS java client SDK
 
 FastDFS Java Client API may be copied only under the terms of the BSD license.
 
-## 使用ant从源码构建
+## 依赖
 
-```
-ant clean package
-```
-
-## 使用maven从源码安装
-
-```
-mvn clean install
-```
-
-## 使用maven从jar文件安装
-```
-mvn install:install-file -DgroupId=org.csource -DartifactId=fastdfs-client-java -Dversion=${version} -Dpackaging=jar -Dfile=fastdfs-client-java-${version}.jar
-```
-
-## 在您的maven项目pom.xml中添加依赖
+在您的maven项目pom.xml中添加
 
 ```xml
 <dependency>
-    <groupId>org.csource</groupId>
+    <groupId>in.clouthin.daas</groupId>
     <artifactId>fastdfs-client-java</artifactId>
-    <version>1.27-SNAPSHOT</version>
+    <version>1.27.0</version>
 </dependency>
 ```
 
+在您的gradle项目build.gradle中添加
+
+```gradle
+
+```
+
 ## .conf 配置文件、所在目录、加载优先顺序
+
+> fastdfs-client.properties
+
+```
+## fastdfs-client.properties
+
+fastdfs.connect_timeout_in_seconds = 5
+fastdfs.network_timeout_in_seconds = 30
+
+fastdfs.charset = UTF-8
+
+fastdfs.http_anti_steal_token = false
+fastdfs.http_secret_key = FastDFS1234567890
+fastdfs.http_tracker_http_port = 80
+
+fastdfs.tracker_servers = 10.0.11.201:22122,10.0.11.202:22122,10.0.11.203:22122
+
+```
+
+> fdfs_client.conf
+
+```
+connect_timeout = 2
+network_timeout = 30
+charset = UTF-8
+http.tracker_http_port = 8080
+http.anti_steal_token = no
+http.secret_key = FastDFS1234567890
+
+tracker_server = 10.0.11.247:22122
+tracker_server = 10.0.11.248:22122
+tracker_server = 10.0.11.249:22122
+
+```
 
     配置文件名fdfs_client.conf(或使用其它文件名xxx_yyy.conf)
     
