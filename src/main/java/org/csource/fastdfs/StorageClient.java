@@ -916,6 +916,7 @@ public class StorageClient {
 
             this.errno = pkgInfo.errno;
             if (pkgInfo.errno != 0) {
+                System.out.println("Warning: errno is not 0 , fail to upload.");
                 return null;
             }
 
@@ -932,6 +933,7 @@ public class StorageClient {
             results[0] = new_group_name;
             results[1] = remote_filename;
 
+
             if (meta_list == null || meta_list.length == 0) {
                 return results;
             }
@@ -943,6 +945,7 @@ public class StorageClient {
                                           meta_list,
                                           ProtoCommon.STORAGE_SET_METADATA_FLAG_OVERWRITE);
             } catch (IOException ex) {
+                ex.printStackTrace();
                 result = 5;
                 throw ex;
             } finally {
