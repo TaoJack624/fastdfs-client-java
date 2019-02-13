@@ -9,25 +9,25 @@
 package org.csource.common;
 
 /**
- * My Exception
+ * FastDfs Exception
  *
  * @author Happy Fish / YuQing
  * @version Version 1.0
  */
-public class MyException extends Exception {
+public class FastdfsException extends Exception {
 
-    public MyException() {
+    public FastdfsException() {
     }
 
-    public MyException(String message) {
+    public FastdfsException(String message) {
         super(message);
     }
 
-    public MyException(String message, Throwable cause) {
+    public FastdfsException(String message, Throwable cause) {
         super(message, cause);
     }
 
-    public MyException(Throwable cause) {
+    public FastdfsException(Throwable cause) {
         super(cause);
     }
 }

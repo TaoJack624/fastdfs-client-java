@@ -19,9 +19,9 @@ import java.net.Socket;
  * @version Version 1.17
  */
 public class TrackerGroup {
-    public    int                 tracker_server_index;
-    public    InetSocketAddress[] tracker_servers;
-    protected Integer             lock;
+    int                 tracker_server_index;
+    InetSocketAddress[] tracker_servers;
+    Integer             lock;
 
     /**
      * Constructor
@@ -44,8 +44,8 @@ public class TrackerGroup {
     public TrackerServer getConnection(int serverIndex) throws IOException {
         Socket sock = new Socket();
         sock.setReuseAddress(true);
-        sock.setSoTimeout(ClientGlobal.g_network_timeout);
-        sock.connect(this.tracker_servers[serverIndex], ClientGlobal.g_connect_timeout);
+        sock.setSoTimeout(ClientGlobal.networkTimeout);
+        sock.connect(this.tracker_servers[serverIndex], ClientGlobal.connectTimeout);
         return new TrackerServer(sock, this.tracker_servers[serverIndex]);
     }
 

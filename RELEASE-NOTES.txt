@@ -1,4 +1,7 @@
-Version 1.28  2019-02-12
+Version 1.29.0  2019-02-12
+  * Camel Case Naming
+
+Version 1.28.0  2019-02-12
   * Update pom.xml
   * Update javadoc
 

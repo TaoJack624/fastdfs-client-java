@@ -8,7 +8,7 @@
 
 package org.csource.fastdfs;
 
-import org.csource.common.MyException;
+import org.csource.common.FastdfsException;
 import org.csource.common.NameValuePair;
 
 import java.io.IOException;
@@ -39,7 +39,7 @@ public class StorageClient1 extends StorageClient {
         super(trackerServer, storageServer);
     }
 
-    public static byte split_file_id(String file_id, String[] results) {
+    public static byte splitFileId(String file_id, String[] results) {
         int pos = file_id.indexOf(SPLIT_GROUP_NAME_AND_FILENAME_SEPERATOR);
         if ((pos <= 0) || (pos == file_id.length() - 1)) {
             return ProtoCommon.ERR_NO_EINVAL;
@@ -59,11 +59,11 @@ public class StorageClient1 extends StorageClient {
      * @return file id(including group name and filename) if success, <br>
      * return null if fail
      * @throws IOException ioex
-     * @throws MyException myex
+     * @throws FastdfsException myex
      */
-    public String upload_file1(String local_filename, String file_ext_name, NameValuePair[] meta_list)
-            throws IOException, MyException {
-        String parts[] = this.upload_file(local_filename, file_ext_name, meta_list);
+    public String uploadFile1(String local_filename, String file_ext_name, NameValuePair[] meta_list)
+            throws IOException, FastdfsException {
+        String parts[] = this.uploadFile(local_filename, file_ext_name, meta_list);
         if (parts != null) {
             return parts[0] + SPLIT_GROUP_NAME_AND_FILENAME_SEPERATOR + parts[1];
         }
@@ -82,13 +82,13 @@ public class StorageClient1 extends StorageClient {
      * @return file id(including group name and filename) if success, <br>
      * return null if fail
      * @throws IOException ioex
-     * @throws MyException myex
+     * @throws FastdfsException myex
      */
-    public String upload_file1(String group_name,
-                               String local_filename,
-                               String file_ext_name,
-                               NameValuePair[] meta_list) throws IOException, MyException {
-        String parts[] = this.upload_file(group_name, local_filename, file_ext_name, meta_list);
+    public String uploadFile1(String group_name,
+                              String local_filename,
+                              String file_ext_name,
+                              NameValuePair[] meta_list) throws IOException, FastdfsException {
+        String parts[] = this.uploadFile(group_name, local_filename, file_ext_name, meta_list);
         if (parts != null) {
             return parts[0] + SPLIT_GROUP_NAME_AND_FILENAME_SEPERATOR + parts[1];
         }
@@ -106,11 +106,11 @@ public class StorageClient1 extends StorageClient {
      * @return file id(including group name and filename) if success, <br>
      * return null if fail
      * @throws IOException ioex
-     * @throws MyException myex
+     * @throws FastdfsException myex
      */
-    public String upload_file1(byte[] file_buff, String file_ext_name, NameValuePair[] meta_list)
-            throws IOException, MyException {
-        String parts[] = this.upload_file(file_buff, file_ext_name, meta_list);
+    public String uploadFile1(byte[] file_buff, String file_ext_name, NameValuePair[] meta_list)
+            throws IOException, FastdfsException {
+        String parts[] = this.uploadFile(file_buff, file_ext_name, meta_list);
         if (parts != null) {
             return parts[0] + SPLIT_GROUP_NAME_AND_FILENAME_SEPERATOR + parts[1];
         }
@@ -129,11 +129,11 @@ public class StorageClient1 extends StorageClient {
      * @return file id(including group name and filename) if success, <br>
      * return null if fail
      * @throws IOException ioex
-     * @throws MyException myex
+     * @throws FastdfsException myex
      */
-    public String upload_file1(String group_name, byte[] file_buff, String file_ext_name, NameValuePair[] meta_list)
-            throws IOException, MyException {
-        String parts[] = this.upload_file(group_name, file_buff, file_ext_name, meta_list);
+    public String uploadFile1(String group_name, byte[] file_buff, String file_ext_name, NameValuePair[] meta_list)
+            throws IOException, FastdfsException {
+        String parts[] = this.uploadFile(group_name, file_buff, file_ext_name, meta_list);
         if (parts != null) {
             return parts[0] + SPLIT_GROUP_NAME_AND_FILENAME_SEPERATOR + parts[1];
         }
@@ -153,14 +153,14 @@ public class StorageClient1 extends StorageClient {
      * @return file id(including group name and filename) if success, <br>
      * return null if fail
      * @throws IOException ioex
-     * @throws MyException myex
+     * @throws FastdfsException myex
      */
-    public String upload_file1(String group_name,
-                               long file_size,
-                               UploadCallback callback,
-                               String file_ext_name,
-                               NameValuePair[] meta_list) throws IOException, MyException {
-        String parts[] = this.upload_file(group_name, file_size, callback, file_ext_name, meta_list);
+    public String uploadFile1(String group_name,
+                              long file_size,
+                              UploadCallback callback,
+                              String file_ext_name,
+                              NameValuePair[] meta_list) throws IOException, FastdfsException {
+        String parts[] = this.uploadFile(group_name, file_size, callback, file_ext_name, meta_list);
         if (parts != null) {
             return parts[0] + SPLIT_GROUP_NAME_AND_FILENAME_SEPERATOR + parts[1];
         }
@@ -178,11 +178,11 @@ public class StorageClient1 extends StorageClient {
      * @return file id(including group name and filename) if success, <br>
      * return null if fail
      * @throws IOException ioex
-     * @throws MyException myex
+     * @throws FastdfsException myex
      */
-    public String upload_appender_file1(String local_filename, String file_ext_name, NameValuePair[] meta_list)
-            throws IOException, MyException {
-        String parts[] = this.upload_appender_file(local_filename, file_ext_name, meta_list);
+    public String uploadAppenderFile1(String local_filename, String file_ext_name, NameValuePair[] meta_list)
+            throws IOException, FastdfsException {
+        String parts[] = this.uploadAppenderFile(local_filename, file_ext_name, meta_list);
         if (parts != null) {
             return parts[0] + SPLIT_GROUP_NAME_AND_FILENAME_SEPERATOR + parts[1];
         }
@@ -201,13 +201,13 @@ public class StorageClient1 extends StorageClient {
      * @return file id(including group name and filename) if success, <br>
      * return null if fail
      * @throws IOException ioex
-     * @throws MyException myex
+     * @throws FastdfsException myex
      */
-    public String upload_appender_file1(String group_name,
-                                        String local_filename,
-                                        String file_ext_name,
-                                        NameValuePair[] meta_list) throws IOException, MyException {
-        String parts[] = this.upload_appender_file(group_name, local_filename, file_ext_name, meta_list);
+    public String uploadAppenderFile1(String group_name,
+                                      String local_filename,
+                                      String file_ext_name,
+                                      NameValuePair[] meta_list) throws IOException, FastdfsException {
+        String parts[] = this.uploadAppenderFile(group_name, local_filename, file_ext_name, meta_list);
         if (parts != null) {
             return parts[0] + SPLIT_GROUP_NAME_AND_FILENAME_SEPERATOR + parts[1];
         }
@@ -225,11 +225,11 @@ public class StorageClient1 extends StorageClient {
      * @return file id(including group name and filename) if success, <br>
      * return null if fail
      * @throws IOException ioex
-     * @throws MyException myex
+     * @throws FastdfsException myex
      */
-    public String upload_appender_file1(byte[] file_buff, String file_ext_name, NameValuePair[] meta_list)
-            throws IOException, MyException {
-        String parts[] = this.upload_appender_file(file_buff, file_ext_name, meta_list);
+    public String uploadAppenderFile1(byte[] file_buff, String file_ext_name, NameValuePair[] meta_list)
+            throws IOException, FastdfsException {
+        String parts[] = this.uploadAppenderFile(file_buff, file_ext_name, meta_list);
         if (parts != null) {
             return parts[0] + SPLIT_GROUP_NAME_AND_FILENAME_SEPERATOR + parts[1];
         }
@@ -248,13 +248,13 @@ public class StorageClient1 extends StorageClient {
      * @return file id(including group name and filename) if success, <br>
      * return null if fail
      * @throws IOException ioex
-     * @throws MyException myex
+     * @throws FastdfsException myex
      */
-    public String upload_appender_file1(String group_name,
-                                        byte[] file_buff,
-                                        String file_ext_name,
-                                        NameValuePair[] meta_list) throws IOException, MyException {
-        String parts[] = this.upload_appender_file(group_name, file_buff, file_ext_name, meta_list);
+    public String uploadAppenderFile1(String group_name,
+                                      byte[] file_buff,
+                                      String file_ext_name,
+                                      NameValuePair[] meta_list) throws IOException, FastdfsException {
+        String parts[] = this.uploadAppenderFile(group_name, file_buff, file_ext_name, meta_list);
         if (parts != null) {
             return parts[0] + SPLIT_GROUP_NAME_AND_FILENAME_SEPERATOR + parts[1];
         }
@@ -274,14 +274,14 @@ public class StorageClient1 extends StorageClient {
      * @return file id(including group name and filename) if success, <br>
      * return null if fail
      * @throws IOException ioex
-     * @throws MyException myex
+     * @throws FastdfsException myex
      */
-    public String upload_appender_file1(String group_name,
-                                        long file_size,
-                                        UploadCallback callback,
-                                        String file_ext_name,
-                                        NameValuePair[] meta_list) throws IOException, MyException {
-        String parts[] = this.upload_appender_file(group_name, file_size, callback, file_ext_name, meta_list);
+    public String uploadAppenderFile1(String group_name,
+                                      long file_size,
+                                      UploadCallback callback,
+                                      String file_ext_name,
+                                      NameValuePair[] meta_list) throws IOException, FastdfsException {
+        String parts[] = this.uploadAppenderFile(group_name, file_size, callback, file_ext_name, meta_list);
         if (parts != null) {
             return parts[0] + SPLIT_GROUP_NAME_AND_FILENAME_SEPERATOR + parts[1];
         }
@@ -301,20 +301,20 @@ public class StorageClient1 extends StorageClient {
      * @return file id(including group name and filename) if success, <br>
      * return null if fail
      * @throws IOException ioex
-     * @throws MyException myex
+     * @throws FastdfsException myex
      */
-    public String upload_file1(String master_file_id,
-                               String prefix_name,
-                               String local_filename,
-                               String file_ext_name,
-                               NameValuePair[] meta_list) throws IOException, MyException {
+    public String uploadFile1(String master_file_id,
+                              String prefix_name,
+                              String local_filename,
+                              String file_ext_name,
+                              NameValuePair[] meta_list) throws IOException, FastdfsException {
         String[] parts = new String[2];
-        this.errno = this.split_file_id(master_file_id, parts);
+        this.errno = this.splitFileId(master_file_id, parts);
         if (this.errno != 0) {
             return null;
         }
 
-        parts = this.upload_file(parts[0], parts[1], prefix_name, local_filename, file_ext_name, meta_list);
+        parts = this.uploadFile(parts[0], parts[1], prefix_name, local_filename, file_ext_name, meta_list);
         if (parts != null) {
             return parts[0] + SPLIT_GROUP_NAME_AND_FILENAME_SEPERATOR + parts[1];
         }
@@ -334,20 +334,20 @@ public class StorageClient1 extends StorageClient {
      * @return file id(including group name and filename) if success, <br>
      * return null if fail
      * @throws IOException ioex
-     * @throws MyException myex
+     * @throws FastdfsException myex
      */
-    public String upload_file1(String master_file_id,
-                               String prefix_name,
-                               byte[] file_buff,
-                               String file_ext_name,
-                               NameValuePair[] meta_list) throws IOException, MyException {
+    public String uploadFile1(String master_file_id,
+                              String prefix_name,
+                              byte[] file_buff,
+                              String file_ext_name,
+                              NameValuePair[] meta_list) throws IOException, FastdfsException {
         String[] parts = new String[2];
-        this.errno = this.split_file_id(master_file_id, parts);
+        this.errno = this.splitFileId(master_file_id, parts);
         if (this.errno != 0) {
             return null;
         }
 
-        parts = this.upload_file(parts[0], parts[1], prefix_name, file_buff, file_ext_name, meta_list);
+        parts = this.uploadFile(parts[0], parts[1], prefix_name, file_buff, file_ext_name, meta_list);
         if (parts != null) {
             return parts[0] + SPLIT_GROUP_NAME_AND_FILENAME_SEPERATOR + parts[1];
         }
@@ -369,22 +369,22 @@ public class StorageClient1 extends StorageClient {
      * @return file id(including group name and filename) if success, <br>
      * return null if fail
      * @throws IOException ioex
-     * @throws MyException myex
+     * @throws FastdfsException myex
      */
-    public String upload_file1(String master_file_id,
-                               String prefix_name,
-                               byte[] file_buff,
-                               int offset,
-                               int length,
-                               String file_ext_name,
-                               NameValuePair[] meta_list) throws IOException, MyException {
+    public String uploadFile1(String master_file_id,
+                              String prefix_name,
+                              byte[] file_buff,
+                              int offset,
+                              int length,
+                              String file_ext_name,
+                              NameValuePair[] meta_list) throws IOException, FastdfsException {
         String[] parts = new String[2];
-        this.errno = this.split_file_id(master_file_id, parts);
+        this.errno = this.splitFileId(master_file_id, parts);
         if (this.errno != 0) {
             return null;
         }
 
-        parts = this.upload_file(parts[0], parts[1], prefix_name, file_buff, offset, length, file_ext_name, meta_list);
+        parts = this.uploadFile(parts[0], parts[1], prefix_name, file_buff, offset, length, file_ext_name, meta_list);
         if (parts != null) {
             return parts[0] + SPLIT_GROUP_NAME_AND_FILENAME_SEPERATOR + parts[1];
         }
@@ -405,21 +405,21 @@ public class StorageClient1 extends StorageClient {
      * @return file id(including group name and filename) if success, <br>
      * return null if fail
      * @throws IOException ioex
-     * @throws MyException myex
+     * @throws FastdfsException myex
      */
-    public String upload_file1(String master_file_id,
-                               String prefix_name,
-                               long file_size,
-                               UploadCallback callback,
-                               String file_ext_name,
-                               NameValuePair[] meta_list) throws IOException, MyException {
+    public String uploadFile1(String master_file_id,
+                              String prefix_name,
+                              long file_size,
+                              UploadCallback callback,
+                              String file_ext_name,
+                              NameValuePair[] meta_list) throws IOException, FastdfsException {
         String[] parts = new String[2];
-        this.errno = this.split_file_id(master_file_id, parts);
+        this.errno = this.splitFileId(master_file_id, parts);
         if (this.errno != 0) {
             return null;
         }
 
-        parts = this.upload_file(parts[0], parts[1], prefix_name, file_size, callback, file_ext_name, meta_list);
+        parts = this.uploadFile(parts[0], parts[1], prefix_name, file_size, callback, file_ext_name, meta_list);
         if (parts != null) {
             return parts[0] + SPLIT_GROUP_NAME_AND_FILENAME_SEPERATOR + parts[1];
         }
@@ -435,16 +435,16 @@ public class StorageClient1 extends StorageClient {
      * @param local_filename   local filename to append
      * @return 0 for success, != 0 for error (error no)
      * @throws IOException ioex
-     * @throws MyException myex
+     * @throws FastdfsException myex
      */
-    public int append_file1(String appender_file_id, String local_filename) throws IOException, MyException {
+    public int appendFile1(String appender_file_id, String local_filename) throws IOException, FastdfsException {
         String[] parts = new String[2];
-        this.errno = this.split_file_id(appender_file_id, parts);
+        this.errno = this.splitFileId(appender_file_id, parts);
         if (this.errno != 0) {
             return this.errno;
         }
 
-        return this.append_file(parts[0], parts[1], local_filename);
+        return this.appendFile(parts[0], parts[1], local_filename);
     }
 
     /**
@@ -454,16 +454,16 @@ public class StorageClient1 extends StorageClient {
      * @param file_buff        file content/buff
      * @return 0 for success, != 0 for error (error no)
      * @throws IOException ioex
-     * @throws MyException myex
+     * @throws FastdfsException myex
      */
-    public int append_file1(String appender_file_id, byte[] file_buff) throws IOException, MyException {
+    public int appendFile1(String appender_file_id, byte[] file_buff) throws IOException, FastdfsException {
         String[] parts = new String[2];
-        this.errno = this.split_file_id(appender_file_id, parts);
+        this.errno = this.splitFileId(appender_file_id, parts);
         if (this.errno != 0) {
             return this.errno;
         }
 
-        return this.append_file(parts[0], parts[1], file_buff);
+        return this.appendFile(parts[0], parts[1], file_buff);
     }
 
     /**
@@ -475,17 +475,17 @@ public class StorageClient1 extends StorageClient {
      * @param length           the length of the buffer to append
      * @return 0 for success, != 0 for error (error no)
      * @throws IOException ioex
-     * @throws MyException myex
+     * @throws FastdfsException myex
      */
-    public int append_file1(String appender_file_id, byte[] file_buff, int offset, int length)
-            throws IOException, MyException {
+    public int appendFile1(String appender_file_id, byte[] file_buff, int offset, int length)
+            throws IOException, FastdfsException {
         String[] parts = new String[2];
-        this.errno = this.split_file_id(appender_file_id, parts);
+        this.errno = this.splitFileId(appender_file_id, parts);
         if (this.errno != 0) {
             return this.errno;
         }
 
-        return this.append_file(parts[0], parts[1], file_buff, offset, length);
+        return this.appendFile(parts[0], parts[1], file_buff, offset, length);
     }
 
     /**
@@ -496,17 +496,17 @@ public class StorageClient1 extends StorageClient {
      * @param callback         the write data callback object
      * @return 0 for success, != 0 for error (error no)
      * @throws IOException ioex
-     * @throws MyException myex
+     * @throws FastdfsException myex
      */
-    public int append_file1(String appender_file_id, long file_size, UploadCallback callback)
-            throws IOException, MyException {
+    public int appendFile1(String appender_file_id, long file_size, UploadCallback callback)
+            throws IOException, FastdfsException {
         String[] parts = new String[2];
-        this.errno = this.split_file_id(appender_file_id, parts);
+        this.errno = this.splitFileId(appender_file_id, parts);
         if (this.errno != 0) {
             return this.errno;
         }
 
-        return this.append_file(parts[0], parts[1], file_size, callback);
+        return this.appendFile(parts[0], parts[1], file_size, callback);
     }
 
     /**
@@ -517,17 +517,17 @@ public class StorageClient1 extends StorageClient {
      * @param local_filename   local filename to append
      * @return 0 for success, != 0 for error (error no)
      * @throws IOException ioex
-     * @throws MyException myex
+     * @throws FastdfsException myex
      */
-    public int modify_file1(String appender_file_id, long file_offset, String local_filename)
-            throws IOException, MyException {
+    public int modifyFile1(String appender_file_id, long file_offset, String local_filename)
+            throws IOException, FastdfsException {
         String[] parts = new String[2];
-        this.errno = this.split_file_id(appender_file_id, parts);
+        this.errno = this.splitFileId(appender_file_id, parts);
         if (this.errno != 0) {
             return this.errno;
         }
 
-        return this.modify_file(parts[0], parts[1], file_offset, local_filename);
+        return this.modifyFile(parts[0], parts[1], file_offset, local_filename);
     }
 
     /**
@@ -538,17 +538,17 @@ public class StorageClient1 extends StorageClient {
      * @param file_buff        file content/buff
      * @return 0 for success, != 0 for error (error no)
      * @throws IOException ioex
-     * @throws MyException myex
+     * @throws FastdfsException myex
      */
-    public int modify_file1(String appender_file_id, long file_offset, byte[] file_buff)
-            throws IOException, MyException {
+    public int modifyFile1(String appender_file_id, long file_offset, byte[] file_buff)
+            throws IOException, FastdfsException {
         String[] parts = new String[2];
-        this.errno = this.split_file_id(appender_file_id, parts);
+        this.errno = this.splitFileId(appender_file_id, parts);
         if (this.errno != 0) {
             return this.errno;
         }
 
-        return this.modify_file(parts[0], parts[1], file_offset, file_buff);
+        return this.modifyFile(parts[0], parts[1], file_offset, file_buff);
     }
 
     /**
@@ -561,20 +561,20 @@ public class StorageClient1 extends StorageClient {
      * @param buffer_length    the length of buff to modify
      * @return 0 for success, != 0 for error (error no)
      * @throws IOException ioex
-     * @throws MyException myex
+     * @throws FastdfsException myex
      */
-    public int modify_file1(String appender_file_id,
-                            long file_offset,
-                            byte[] file_buff,
-                            int buffer_offset,
-                            int buffer_length) throws IOException, MyException {
+    public int modifyFile1(String appender_file_id,
+                           long file_offset,
+                           byte[] file_buff,
+                           int buffer_offset,
+                           int buffer_length) throws IOException, FastdfsException {
         String[] parts = new String[2];
-        this.errno = this.split_file_id(appender_file_id, parts);
+        this.errno = this.splitFileId(appender_file_id, parts);
         if (this.errno != 0) {
             return this.errno;
         }
 
-        return this.modify_file(parts[0], parts[1], file_offset, file_buff, buffer_offset, buffer_length);
+        return this.modifyFile(parts[0], parts[1], file_offset, file_buff, buffer_offset, buffer_length);
     }
 
     /**
@@ -586,17 +586,17 @@ public class StorageClient1 extends StorageClient {
      * @param callback         the write data callback object
      * @return 0 for success, != 0 for error (error no)
      * @throws IOException ioex
-     * @throws MyException myex
+     * @throws FastdfsException myex
      */
-    public int modify_file1(String appender_file_id, long file_offset, long modify_size, UploadCallback callback)
-            throws IOException, MyException {
+    public int modifyFile1(String appender_file_id, long file_offset, long modify_size, UploadCallback callback)
+            throws IOException, FastdfsException {
         String[] parts = new String[2];
-        this.errno = this.split_file_id(appender_file_id, parts);
+        this.errno = this.splitFileId(appender_file_id, parts);
         if (this.errno != 0) {
             return this.errno;
         }
 
-        return this.modify_file(parts[0], parts[1], file_offset, modify_size, callback);
+        return this.modifyFile(parts[0], parts[1], file_offset, modify_size, callback);
     }
 
     /**
@@ -605,16 +605,16 @@ public class StorageClient1 extends StorageClient {
      * @param file_id the file id(including group name and filename)
      * @return 0 for success, none zero for fail (error code)
      * @throws IOException ioex
-     * @throws MyException myex
+     * @throws FastdfsException myex
      */
-    public int delete_file1(String file_id) throws IOException, MyException {
+    public int deleteFile1(String file_id) throws IOException, FastdfsException {
         String[] parts = new String[2];
-        this.errno = this.split_file_id(file_id, parts);
+        this.errno = this.splitFileId(file_id, parts);
         if (this.errno != 0) {
             return this.errno;
         }
 
-        return this.delete_file(parts[0], parts[1]);
+        return this.deleteFile(parts[0], parts[1]);
     }
 
     /**
@@ -623,16 +623,16 @@ public class StorageClient1 extends StorageClient {
      * @param appender_file_id the appender file id
      * @return 0 for success, none zero for fail (error code)
      * @throws IOException ioex
-     * @throws MyException myex
+     * @throws FastdfsException myex
      */
-    public int truncate_file1(String appender_file_id) throws IOException, MyException {
+    public int truncateFile1(String appender_file_id) throws IOException, FastdfsException {
         String[] parts = new String[2];
-        this.errno = this.split_file_id(appender_file_id, parts);
+        this.errno = this.splitFileId(appender_file_id, parts);
         if (this.errno != 0) {
             return this.errno;
         }
 
-        return this.truncate_file(parts[0], parts[1]);
+        return this.truncateFile(parts[0], parts[1]);
     }
 
     /**
@@ -642,16 +642,16 @@ public class StorageClient1 extends StorageClient {
      * @param truncated_file_size truncated file size
      * @return 0 for success, none zero for fail (error code)
      * @throws IOException ioex
-     * @throws MyException myex
+     * @throws FastdfsException myex
      */
-    public int truncate_file1(String appender_file_id, long truncated_file_size) throws IOException, MyException {
+    public int truncateFile1(String appender_file_id, long truncated_file_size) throws IOException, FastdfsException {
         String[] parts = new String[2];
-        this.errno = this.split_file_id(appender_file_id, parts);
+        this.errno = this.splitFileId(appender_file_id, parts);
         if (this.errno != 0) {
             return this.errno;
         }
 
-        return this.truncate_file(parts[0], parts[1], truncated_file_size);
+        return this.truncateFile(parts[0], parts[1], truncated_file_size);
     }
 
     /**
@@ -660,13 +660,13 @@ public class StorageClient1 extends StorageClient {
      * @param file_id the file id(including group name and filename)
      * @return file content/buffer, return null if fail
      * @throws IOException ioex
-     * @throws MyException myex
+     * @throws FastdfsException myex
      */
-    public byte[] download_file1(String file_id) throws IOException, MyException {
+    public byte[] downloadFile1(String file_id) throws IOException, FastdfsException {
         final long file_offset = 0;
         final long download_bytes = 0;
 
-        return this.download_file1(file_id, file_offset, download_bytes);
+        return this.downloadFile1(file_id, file_offset, download_bytes);
     }
 
     /**
@@ -677,17 +677,17 @@ public class StorageClient1 extends StorageClient {
      * @param download_bytes download bytes, 0 for remain bytes from offset
      * @return file content/buff, return null if fail
      * @throws IOException ioex
-     * @throws MyException myex
+     * @throws FastdfsException myex
      */
-    public byte[] download_file1(String file_id, long file_offset, long download_bytes)
-            throws IOException, MyException {
+    public byte[] downloadFile1(String file_id, long file_offset, long download_bytes)
+            throws IOException, FastdfsException {
         String[] parts = new String[2];
-        this.errno = this.split_file_id(file_id, parts);
+        this.errno = this.splitFileId(file_id, parts);
         if (this.errno != 0) {
             return null;
         }
 
-        return this.download_file(parts[0], parts[1], file_offset, download_bytes);
+        return this.downloadFile(parts[0], parts[1], file_offset, download_bytes);
     }
 
     /**
@@ -697,13 +697,13 @@ public class StorageClient1 extends StorageClient {
      * @param local_filename the filename on local
      * @return 0 success, return none zero errno if fail
      * @throws IOException ioex
-     * @throws MyException myex
+     * @throws FastdfsException myex
      */
-    public int download_file1(String file_id, String local_filename) throws IOException, MyException {
+    public int downloadFile1(String file_id, String local_filename) throws IOException, FastdfsException {
         final long file_offset = 0;
         final long download_bytes = 0;
 
-        return this.download_file1(file_id, file_offset, download_bytes, local_filename);
+        return this.downloadFile1(file_id, file_offset, download_bytes, local_filename);
     }
 
     /**
@@ -715,17 +715,17 @@ public class StorageClient1 extends StorageClient {
      * @param local_filename the filename on local
      * @return 0 success, return none zero errno if fail
      * @throws IOException ioex
-     * @throws MyException myex
+     * @throws FastdfsException myex
      */
-    public int download_file1(String file_id, long file_offset, long download_bytes, String local_filename)
-            throws IOException, MyException {
+    public int downloadFile1(String file_id, long file_offset, long download_bytes, String local_filename)
+            throws IOException, FastdfsException {
         String[] parts = new String[2];
-        this.errno = this.split_file_id(file_id, parts);
+        this.errno = this.splitFileId(file_id, parts);
         if (this.errno != 0) {
             return this.errno;
         }
 
-        return this.download_file(parts[0], parts[1], file_offset, download_bytes, local_filename);
+        return this.downloadFile(parts[0], parts[1], file_offset, download_bytes, local_filename);
     }
 
     /**
@@ -735,13 +735,13 @@ public class StorageClient1 extends StorageClient {
      * @param callback the callback object, will call callback.recv() when data arrive
      * @return 0 success, return none zero errno if fail
      * @throws IOException ioex
-     * @throws MyException myex
+     * @throws FastdfsException myex
      */
-    public int download_file1(String file_id, DownloadCallback callback) throws IOException, MyException {
+    public int downloadFile1(String file_id, DownloadCallback callback) throws IOException, FastdfsException {
         final long file_offset = 0;
         final long download_bytes = 0;
 
-        return this.download_file1(file_id, file_offset, download_bytes, callback);
+        return this.downloadFile1(file_id, file_offset, download_bytes, callback);
     }
 
     /**
@@ -753,17 +753,17 @@ public class StorageClient1 extends StorageClient {
      * @param callback       the callback object, will call callback.recv() when data arrive
      * @return 0 success, return none zero errno if fail
      * @throws IOException ioex
-     * @throws MyException myex
+     * @throws FastdfsException myex
      */
-    public int download_file1(String file_id, long file_offset, long download_bytes, DownloadCallback callback)
-            throws IOException, MyException {
+    public int downloadFile1(String file_id, long file_offset, long download_bytes, DownloadCallback callback)
+            throws IOException, FastdfsException {
         String[] parts = new String[2];
-        this.errno = this.split_file_id(file_id, parts);
+        this.errno = this.splitFileId(file_id, parts);
         if (this.errno != 0) {
             return this.errno;
         }
 
-        return this.download_file(parts[0], parts[1], file_offset, download_bytes, callback);
+        return this.downloadFile(parts[0], parts[1], file_offset, download_bytes, callback);
     }
 
     /**
@@ -772,16 +772,16 @@ public class StorageClient1 extends StorageClient {
      * @param file_id the file id(including group name and filename)
      * @return meta info array, return null if fail
      * @throws IOException ioex
-     * @throws MyException myex
+     * @throws FastdfsException myex
      */
-    public NameValuePair[] get_metadata1(String file_id) throws IOException, MyException {
+    public NameValuePair[] getMetadata1(String file_id) throws IOException, FastdfsException {
         String[] parts = new String[2];
-        this.errno = this.split_file_id(file_id, parts);
+        this.errno = this.splitFileId(file_id, parts);
         if (this.errno != 0) {
             return null;
         }
 
-        return this.get_metadata(parts[0], parts[1]);
+        return this.getMetadata(parts[0], parts[1]);
     }
 
     /**
@@ -796,16 +796,17 @@ public class StorageClient1 extends StorageClient {
      *                  the metadata item not exist, otherwise update it</li></ul>
      * @return 0 for success, !=0 fail (error code)
      * @throws IOException ioex
-     * @throws MyException myex
+     * @throws FastdfsException myex
      */
-    public int set_metadata1(String file_id, NameValuePair[] meta_list, byte op_flag) throws IOException, MyException {
+    public int setMetadata1(String file_id, NameValuePair[] meta_list, byte op_flag) throws IOException,
+            FastdfsException {
         String[] parts = new String[2];
-        this.errno = this.split_file_id(file_id, parts);
+        this.errno = this.splitFileId(file_id, parts);
         if (this.errno != 0) {
             return this.errno;
         }
 
-        return this.set_metadata(parts[0], parts[1], meta_list, op_flag);
+        return this.setMetadata(parts[0], parts[1], meta_list, op_flag);
     }
 
     /**
@@ -814,16 +815,16 @@ public class StorageClient1 extends StorageClient {
      * @param file_id the file id(including group name and filename)
      * @return FileInfo object for success, return null for fail
      * @throws IOException ioex
-     * @throws MyException myex
+     * @throws FastdfsException myex
      */
-    public FileInfo query_file_info1(String file_id) throws IOException, MyException {
+    public FileInfo queryFileInfo1(String file_id) throws IOException, FastdfsException {
         String[] parts = new String[2];
-        this.errno = this.split_file_id(file_id, parts);
+        this.errno = this.splitFileId(file_id, parts);
         if (this.errno != 0) {
             return null;
         }
 
-        return this.query_file_info(parts[0], parts[1]);
+        return this.queryFileInfo(parts[0], parts[1]);
     }
 
     /**
@@ -832,15 +833,15 @@ public class StorageClient1 extends StorageClient {
      * @param file_id the file id(including group name and filename)
      * @return FileInfo object for success, return null for fail
      * @throws IOException ioex
-     * @throws MyException myex
+     * @throws FastdfsException myex
      */
-    public FileInfo get_file_info1(String file_id) throws IOException, MyException {
+    public FileInfo getFileInfo1(String file_id) throws IOException, FastdfsException {
         String[] parts = new String[2];
-        this.errno = this.split_file_id(file_id, parts);
+        this.errno = this.splitFileId(file_id, parts);
         if (this.errno != 0) {
             return null;
         }
 
-        return this.get_file_info(parts[0], parts[1]);
+        return this.getFileInfo(parts[0], parts[1]);
     }
 }

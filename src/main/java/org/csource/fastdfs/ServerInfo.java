@@ -60,8 +60,8 @@ public class ServerInfo {
     public Socket connect() throws IOException {
         Socket sock = new Socket();
         sock.setReuseAddress(true);
-        sock.setSoTimeout(ClientGlobal.g_network_timeout);
-        sock.connect(new InetSocketAddress(this.ip_addr, this.port), ClientGlobal.g_connect_timeout);
+        sock.setSoTimeout(ClientGlobal.networkTimeout);
+        sock.connect(new InetSocketAddress(this.ip_addr, this.port), ClientGlobal.connectTimeout);
         return sock;
     }
 }

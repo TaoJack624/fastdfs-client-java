@@ -8,8 +8,6 @@
 
 package org.csource.fastdfs;
 
-import org.csource.fastdfs.*;
-
 /**
  * load test class
  *
@@ -44,8 +42,8 @@ public class TestLoad {
 
     try {
       ClientGlobal.init(args[0]);
-      System.out.println("network_timeout=" + ClientGlobal.g_network_timeout + "ms");
-      System.out.println("charset=" + ClientGlobal.g_charset);
+      System.out.println("network_timeout=" + ClientGlobal.networkTimeout + "ms");
+      System.out.println("charset=" + ClientGlobal.charset);
 
       file_ids = new java.util.concurrent.ConcurrentLinkedQueue();
 
@@ -101,7 +99,7 @@ public class TestLoad {
       java.util.Arrays.fill(file_buff, (byte) 65);
 
       try {
-        file_id = client.upload_file1(file_buff, "txt", null);
+        file_id = client.uploadFile1(file_buff, "txt", null);
         if (file_id == null) {
           System.out.println("upload file fail, error code: " + client.getErrorCode());
           return -1;
@@ -139,7 +137,7 @@ public class TestLoad {
       StorageClient1 client = new StorageClient1(trackerServer, storageServer);
 
       try {
-        errno = client.download_file1(file_id, this.callback);
+        errno = client.downloadFile1(file_id, this.callback);
         if (errno != 0) {
           System.out.println("Download file fail, file_id: " + file_id + ", error no: " + errno);
         }

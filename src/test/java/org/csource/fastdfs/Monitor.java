@@ -8,8 +8,6 @@
 
 package org.csource.fastdfs;
 
-import org.csource.fastdfs.*;
-
 import java.text.SimpleDateFormat;
 
 /**
@@ -38,8 +36,8 @@ public class Monitor {
 
     try {
       ClientGlobal.init(args[0]);
-      System.out.println("network_timeout=" + ClientGlobal.g_network_timeout + "ms");
-      System.out.println("charset=" + ClientGlobal.g_charset);
+      System.out.println("network_timeout=" + ClientGlobal.networkTimeout + "ms");
+      System.out.println("charset=" + ClientGlobal.charset);
 
       TrackerClient tracker = new TrackerClient();
 

@@ -9,7 +9,7 @@
 package org.csource.fastdfs;
 
 import org.csource.common.IniFileReader;
-import org.csource.common.MyException;
+import org.csource.common.FastdfsException;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -50,14 +50,14 @@ public class ClientGlobal {
     public static final String  DEFAULT_HTTP_SECRET_KEY        = "FastDFS1234567890";
     public static final int     DEFAULT_HTTP_TRACKER_HTTP_PORT = 80;
 
-    public static int     g_connect_timeout   = DEFAULT_CONNECT_TIMEOUT * 1000; //millisecond
-    public static int     g_network_timeout   = DEFAULT_NETWORK_TIMEOUT * 1000; //millisecond
-    public static String  g_charset           = DEFAULT_CHARSET;
-    public static boolean g_anti_steal_token  = DEFAULT_HTTP_ANTI_STEAL_TOKEN; //if anti-steal token
-    public static String  g_secret_key        = DEFAULT_HTTP_SECRET_KEY; //generage token secret key
-    public static int     g_tracker_http_port = DEFAULT_HTTP_TRACKER_HTTP_PORT;
+    public static int     connectTimeout  = DEFAULT_CONNECT_TIMEOUT * 1000; //millisecond
+    public static int     networkTimeout  = DEFAULT_NETWORK_TIMEOUT * 1000; //millisecond
+    public static String  charset         = DEFAULT_CHARSET;
+    public static boolean antiStealToken  = DEFAULT_HTTP_ANTI_STEAL_TOKEN; //if anti-steal token
+    public static String  secretKey       = DEFAULT_HTTP_SECRET_KEY; //generage token secret key
+    public static int     trackerHttpPort = DEFAULT_HTTP_TRACKER_HTTP_PORT;
 
-    public static TrackerGroup g_tracker_group;
+    public static TrackerGroup trackerGroup;
 
     private ClientGlobal() {
     }
@@ -67,52 +67,52 @@ public class ClientGlobal {
      *
      * @param conf_filename config filename
      * @throws IOException ioex
-     * @throws MyException myex
+     * @throws FastdfsException myex
      */
-    public static void init(String conf_filename) throws IOException, MyException {
+    public static void init(String conf_filename) throws IOException, FastdfsException {
         IniFileReader iniReader;
         String[] szTrackerServers;
         String[] parts;
 
         iniReader = new IniFileReader(conf_filename);
 
-        g_connect_timeout = iniReader.getIntValue("connect_timeout", DEFAULT_CONNECT_TIMEOUT);
-        if (g_connect_timeout < 0) {
-            g_connect_timeout = DEFAULT_CONNECT_TIMEOUT;
+        connectTimeout = iniReader.getIntValue("connect_timeout", DEFAULT_CONNECT_TIMEOUT);
+        if (connectTimeout < 0) {
+            connectTimeout = DEFAULT_CONNECT_TIMEOUT;
         }
-        g_connect_timeout *= 1000; //millisecond
+        connectTimeout *= 1000; //millisecond
 
-        g_network_timeout = iniReader.getIntValue("network_timeout", DEFAULT_NETWORK_TIMEOUT);
-        if (g_network_timeout < 0) {
-            g_network_timeout = DEFAULT_NETWORK_TIMEOUT;
+        networkTimeout = iniReader.getIntValue("network_timeout", DEFAULT_NETWORK_TIMEOUT);
+        if (networkTimeout < 0) {
+            networkTimeout = DEFAULT_NETWORK_TIMEOUT;
         }
-        g_network_timeout *= 1000; //millisecond
+        networkTimeout *= 1000; //millisecond
 
-        g_charset = iniReader.getStrValue("charset");
-        if (g_charset == null || g_charset.length() == 0) {
-            g_charset = "ISO8859-1";
+        charset = iniReader.getStrValue("charset");
+        if (charset == null || charset.length() == 0) {
+            charset = "ISO8859-1";
         }
 
         szTrackerServers = iniReader.getValues("tracker_server");
         if (szTrackerServers == null) {
-            throw new MyException("item \"tracker_server\" in " + conf_filename + " not found");
+            throw new FastdfsException("item \"tracker_server\" in " + conf_filename + " not found");
         }
 
         InetSocketAddress[] tracker_servers = new InetSocketAddress[szTrackerServers.length];
         for (int i = 0; i < szTrackerServers.length; i++) {
             parts = szTrackerServers[i].split("\\:", 2);
             if (parts.length != 2) {
-                throw new MyException("the value of item \"tracker_server\" is invalid, the correct format is host:port");
+                throw new FastdfsException("the value of item \"tracker_server\" is invalid, the correct format is host:port");
             }
 
             tracker_servers[i] = new InetSocketAddress(parts[0].trim(), Integer.parseInt(parts[1].trim()));
         }
-        g_tracker_group = new TrackerGroup(tracker_servers);
+        trackerGroup = new TrackerGroup(tracker_servers);
 
-        g_tracker_http_port = iniReader.getIntValue("http.tracker_http_port", 80);
-        g_anti_steal_token = iniReader.getBoolValue("http.anti_steal_token", false);
-        if (g_anti_steal_token) {
-            g_secret_key = iniReader.getStrValue("http.secret_key");
+        trackerHttpPort = iniReader.getIntValue("http.tracker_http_port", 80);
+        antiStealToken = iniReader.getBoolValue("http.anti_steal_token", false);
+        if (antiStealToken) {
+            secretKey = iniReader.getStrValue("http.secret_key");
         }
     }
 
@@ -129,9 +129,9 @@ public class ClientGlobal {
      *                      server的IP和端口用冒号':'分隔
      *                      server之间用逗号','分隔
      * @throws IOException ioex
-     * @throws MyException myex
+     * @throws FastdfsException myex
      */
-    public static void initByProperties(String propsFilePath) throws IOException, MyException {
+    public static void initByProperties(String propsFilePath) throws IOException, FastdfsException {
         Properties props = new Properties();
         InputStream in = IniFileReader.loadFromOsFileSystemOrClasspathAsStream(propsFilePath);
         if (in != null) {
@@ -140,10 +140,10 @@ public class ClientGlobal {
         initByProperties(props);
     }
 
-    public static void initByProperties(Properties props) throws IOException, MyException {
+    public static void initByProperties(Properties props) throws IOException, FastdfsException {
         String trackerServersConf = props.getProperty(PROP_KEY_TRACKER_SERVERS);
         if (trackerServersConf == null || trackerServersConf.trim().length() == 0) {
-            throw new MyException(String.format("configure item %s is required", PROP_KEY_TRACKER_SERVERS));
+            throw new FastdfsException(String.format("configure item %s is required", PROP_KEY_TRACKER_SERVERS));
         }
         initByTrackers(trackerServersConf.trim());
 
@@ -154,22 +154,22 @@ public class ClientGlobal {
         String httpSecretKeyConf = props.getProperty(PROP_KEY_HTTP_SECRET_KEY);
         String httpTrackerHttpPortConf = props.getProperty(PROP_KEY_HTTP_TRACKER_HTTP_PORT);
         if (connectTimeoutInSecondsConf != null && connectTimeoutInSecondsConf.trim().length() != 0) {
-            g_connect_timeout = Integer.parseInt(connectTimeoutInSecondsConf.trim()) * 1000;
+            connectTimeout = Integer.parseInt(connectTimeoutInSecondsConf.trim()) * 1000;
         }
         if (networkTimeoutInSecondsConf != null && networkTimeoutInSecondsConf.trim().length() != 0) {
-            g_network_timeout = Integer.parseInt(networkTimeoutInSecondsConf.trim()) * 1000;
+            networkTimeout = Integer.parseInt(networkTimeoutInSecondsConf.trim()) * 1000;
         }
         if (charsetConf != null && charsetConf.trim().length() != 0) {
-            g_charset = charsetConf.trim();
+            charset = charsetConf.trim();
         }
         if (httpAntiStealTokenConf != null && httpAntiStealTokenConf.trim().length() != 0) {
-            g_anti_steal_token = Boolean.parseBoolean(httpAntiStealTokenConf);
+            antiStealToken = Boolean.parseBoolean(httpAntiStealTokenConf);
         }
         if (httpSecretKeyConf != null && httpSecretKeyConf.trim().length() != 0) {
-            g_secret_key = httpSecretKeyConf.trim();
+            secretKey = httpSecretKeyConf.trim();
         }
         if (httpTrackerHttpPortConf != null && httpTrackerHttpPortConf.trim().length() != 0) {
-            g_tracker_http_port = Integer.parseInt(httpTrackerHttpPortConf);
+            trackerHttpPort = Integer.parseInt(httpTrackerHttpPortConf);
         }
     }
 
@@ -180,9 +180,9 @@ public class ClientGlobal {
      *                       server的IP和端口用冒号':'分隔
      *                       server之间用逗号','分隔
      * @throws IOException ioex
-     * @throws MyException myex
+     * @throws FastdfsException myex
      */
-    public static void initByTrackers(String trackerServers) throws IOException, MyException {
+    public static void initByTrackers(String trackerServers) throws IOException, FastdfsException {
         List<InetSocketAddress> list = new ArrayList();
         String spr1 = ",";
         String spr2 = ":";
@@ -197,8 +197,8 @@ public class ClientGlobal {
         initByTrackers(trackerAddresses);
     }
 
-    public static void initByTrackers(InetSocketAddress[] trackerAddresses) throws IOException, MyException {
-        g_tracker_group = new TrackerGroup(trackerAddresses);
+    public static void initByTrackers(InetSocketAddress[] trackerAddresses) throws IOException, FastdfsException {
+        trackerGroup = new TrackerGroup(trackerAddresses);
     }
 
     /**
@@ -211,8 +211,8 @@ public class ClientGlobal {
      */
     public static Socket getSocket(String ip_addr, int port) throws IOException {
         Socket sock = new Socket();
-        sock.setSoTimeout(ClientGlobal.g_network_timeout);
-        sock.connect(new InetSocketAddress(ip_addr, port), ClientGlobal.g_connect_timeout);
+        sock.setSoTimeout(ClientGlobal.networkTimeout);
+        sock.connect(new InetSocketAddress(ip_addr, port), ClientGlobal.connectTimeout);
         return sock;
     }
 
@@ -225,75 +225,75 @@ public class ClientGlobal {
      */
     public static Socket getSocket(InetSocketAddress addr) throws IOException {
         Socket sock = new Socket();
-        sock.setSoTimeout(ClientGlobal.g_network_timeout);
-        sock.connect(addr, ClientGlobal.g_connect_timeout);
+        sock.setSoTimeout(ClientGlobal.networkTimeout);
+        sock.connect(addr, ClientGlobal.connectTimeout);
         return sock;
     }
 
-    public static int getG_connect_timeout() {
-        return g_connect_timeout;
+    public static int getConnectTimeout() {
+        return connectTimeout;
     }
 
-    public static void setG_connect_timeout(int connect_timeout) {
-        ClientGlobal.g_connect_timeout = connect_timeout;
+    public static void setConnectTimeout(int connect_timeout) {
+        ClientGlobal.connectTimeout = connect_timeout;
     }
 
-    public static int getG_network_timeout() {
-        return g_network_timeout;
+    public static int getNetworkTimeout() {
+        return networkTimeout;
     }
 
-    public static void setG_network_timeout(int network_timeout) {
-        ClientGlobal.g_network_timeout = network_timeout;
+    public static void setNetworkTimeout(int network_timeout) {
+        ClientGlobal.networkTimeout = network_timeout;
     }
 
-    public static String getG_charset() {
-        return g_charset;
+    public static String getCharset() {
+        return charset;
     }
 
-    public static void setG_charset(String charset) {
-        ClientGlobal.g_charset = charset;
+    public static void setCharset(String charset) {
+        ClientGlobal.charset = charset;
     }
 
-    public static int getG_tracker_http_port() {
-        return g_tracker_http_port;
+    public static int getTrackerHttpPort() {
+        return trackerHttpPort;
     }
 
-    public static void setG_tracker_http_port(int tracker_http_port) {
-        ClientGlobal.g_tracker_http_port = tracker_http_port;
+    public static void setTrackerHttpPort(int tracker_http_port) {
+        ClientGlobal.trackerHttpPort = tracker_http_port;
     }
 
-    public static boolean getG_anti_steal_token() {
-        return g_anti_steal_token;
+    public static boolean getAntiStealToken() {
+        return antiStealToken;
     }
 
-    public static boolean isG_anti_steal_token() {
-        return g_anti_steal_token;
+    public static boolean isAntiStealToken() {
+        return antiStealToken;
     }
 
-    public static void setG_anti_steal_token(boolean anti_steal_token) {
-        ClientGlobal.g_anti_steal_token = anti_steal_token;
+    public static void setAntiStealToken(boolean anti_steal_token) {
+        ClientGlobal.antiStealToken = anti_steal_token;
     }
 
-    public static String getG_secret_key() {
-        return g_secret_key;
+    public static String getSecretKey() {
+        return secretKey;
     }
 
-    public static void setG_secret_key(String secret_key) {
-        ClientGlobal.g_secret_key = secret_key;
+    public static void setSecretKey(String secret_key) {
+        ClientGlobal.secretKey = secret_key;
     }
 
-    public static TrackerGroup getG_tracker_group() {
-        return g_tracker_group;
+    public static TrackerGroup getTrackerGroup() {
+        return trackerGroup;
     }
 
-    public static void setG_tracker_group(TrackerGroup tracker_group) {
-        ClientGlobal.g_tracker_group = tracker_group;
+    public static void setTrackerGroup(TrackerGroup tracker_group) {
+        ClientGlobal.trackerGroup = tracker_group;
     }
 
     public static String configInfo() {
         String trackerServers = "";
-        if (g_tracker_group != null) {
-            InetSocketAddress[] trackerAddresses = g_tracker_group.tracker_servers;
+        if (trackerGroup != null) {
+            InetSocketAddress[] trackerAddresses = trackerGroup.tracker_servers;
             for (InetSocketAddress inetSocketAddress : trackerAddresses) {
                 if (trackerServers.length() > 0) {
                     trackerServers += ",";
@@ -301,9 +301,9 @@ public class ClientGlobal {
                 trackerServers += inetSocketAddress.toString().substring(1);
             }
         }
-        return "{" + "\n  g_connect_timeout(ms) = " + g_connect_timeout + "\n  g_network_timeout(ms) = " +
-                g_network_timeout + "\n  g_charset = " + g_charset + "\n  g_anti_steal_token = " + g_anti_steal_token +
-                "\n  g_secret_key = " + g_secret_key + "\n  g_tracker_http_port = " + g_tracker_http_port +
+        return "{" + "\n  connect_timeout(ms) = " + connectTimeout + "\n  network_timeout(ms) = " + networkTimeout + "\n  charset = " +
+                charset + "\n  anti_steal_token = " + antiStealToken +
+                "\n  secret_key = " + secretKey + "\n  tracker_http_port = " + trackerHttpPort +
                 "\n  trackerServers = " + trackerServers + "\n}";
     }
 

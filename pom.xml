@@ -4,7 +4,7 @@
 
     <groupId>in.clouthink.daas</groupId>
     <artifactId>fastdfs-client-java</artifactId>
-    <version>1.28.0</version>
+    <version>1.29.0</version>
     <name>fastdfs-client-java</name>
     <packaging>jar</packaging>
     <url>https://github.com/melthaw/fastdfs-client-java</url>
@@ -12,10 +12,10 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <maven.test.failure.ignore>true</maven.test.failure.ignore>
-        <maven.test.skip>true</maven.test.skip>
-        <jdk.version>1.6</jdk.version>
+        <java.version>1.8</java.version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.javadoc.failOnError>false</maven.javadoc.failOnError>
     </properties>
 
     <licenses>
@@ -38,20 +38,7 @@
         <url>git://github.com/melthaw/fastdfs-client-java.git</url>
     </scm>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.5.1</version>
-                <configuration>
-                    <encoding>UTF-8</encoding>
-                    <source>${jdk.version}</source>
-                    <target>${jdk.version}</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+
     <pluginRepositories>
         <pluginRepository>
             <id>spring-snapshots</id>

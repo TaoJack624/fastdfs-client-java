@@ -9,7 +9,6 @@
 package org.csource.fastdfs;
 
 import org.csource.common.NameValuePair;
-import org.csource.fastdfs.*;
 
 /**
  * client test
@@ -42,8 +41,8 @@ public class Test {
 
     try {
       ClientGlobal.init(conf_filename);
-      System.out.println("network_timeout=" + ClientGlobal.g_network_timeout + "ms");
-      System.out.println("charset=" + ClientGlobal.g_charset);
+      System.out.println("network_timeout=" + ClientGlobal.networkTimeout + "ms");
+      System.out.println("charset=" + ClientGlobal.charset);
 
       TrackerClient tracker = new TrackerClient();
       TrackerServer trackerServer = tracker.getConnection();
@@ -52,12 +51,12 @@ public class Test {
 
       NameValuePair[] metaList = new NameValuePair[1];
       metaList[0] = new NameValuePair("fileName", local_filename);
-      String fileId = client.upload_file1(local_filename, null, metaList);
+      String fileId = client.uploadFile1(local_filename, null, metaList);
       System.out.println("upload success. file id is: " + fileId);
 
       int i = 0;
       while (i++ < 10) {
-        byte[] result = client.download_file1(fileId);
+        byte[] result = client.downloadFile1(fileId);
         System.out.println(i + ", download result is: " + result.length);
       }
 

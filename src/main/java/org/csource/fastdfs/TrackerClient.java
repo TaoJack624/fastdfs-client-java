@@ -8,8 +8,6 @@
 
 package org.csource.fastdfs;
 
-import org.csource.common.MyException;
-
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.Socket;
@@ -29,7 +27,7 @@ public class TrackerClient {
      * constructor with global tracker group
      */
     public TrackerClient() {
-        this.tracker_group = ClientGlobal.g_tracker_group;
+        this.tracker_group = ClientGlobal.trackerGroup;
     }
 
     /**
@@ -120,7 +118,7 @@ public class TrackerClient {
                 byte[] bs;
                 int group_len;
 
-                bs = groupName.getBytes(ClientGlobal.g_charset);
+                bs = groupName.getBytes(ClientGlobal.charset);
                 bGroupName = new byte[ProtoCommon.FDFS_GROUP_NAME_MAX_LEN];
 
                 if (bs.length <= ProtoCommon.FDFS_GROUP_NAME_MAX_LEN) {
@@ -220,7 +218,7 @@ public class TrackerClient {
                 byte[] bs;
                 int group_len;
 
-                bs = groupName.getBytes(ClientGlobal.g_charset);
+                bs = groupName.getBytes(ClientGlobal.charset);
                 bGroupName = new byte[ProtoCommon.FDFS_GROUP_NAME_MAX_LEN];
 
                 if (bs.length <= ProtoCommon.FDFS_GROUP_NAME_MAX_LEN) {
@@ -397,9 +395,9 @@ public class TrackerClient {
         OutputStream out = trackerSocket.getOutputStream();
 
         try {
-            bs = groupName.getBytes(ClientGlobal.g_charset);
+            bs = groupName.getBytes(ClientGlobal.charset);
             bGroupName = new byte[ProtoCommon.FDFS_GROUP_NAME_MAX_LEN];
-            bFileName = filename.getBytes(ClientGlobal.g_charset);
+            bFileName = filename.getBytes(ClientGlobal.charset);
 
             if (bs.length <= ProtoCommon.FDFS_GROUP_NAME_MAX_LEN) {
                 len = bs.length;
@@ -485,7 +483,7 @@ public class TrackerClient {
      */
     public StorageServer getFetchStorage1(TrackerServer trackerServer, String file_id) throws IOException {
         String[] parts = new String[2];
-        this.errno = StorageClient1.split_file_id(file_id, parts);
+        this.errno = StorageClient1.splitFileId(file_id, parts);
         if (this.errno != 0) {
             return null;
         }
@@ -503,7 +501,7 @@ public class TrackerClient {
      */
     public ServerInfo[] getFetchStorages1(TrackerServer trackerServer, String file_id) throws IOException {
         String[] parts = new String[2];
-        this.errno = StorageClient1.split_file_id(file_id, parts);
+        this.errno = StorageClient1.splitFileId(file_id, parts);
         if (this.errno != 0) {
             return null;
         }
@@ -626,7 +624,7 @@ public class TrackerClient {
         OutputStream out = trackerSocket.getOutputStream();
 
         try {
-            bs = groupName.getBytes(ClientGlobal.g_charset);
+            bs = groupName.getBytes(ClientGlobal.charset);
             bGroupName = new byte[ProtoCommon.FDFS_GROUP_NAME_MAX_LEN];
 
             if (bs.length <= ProtoCommon.FDFS_GROUP_NAME_MAX_LEN) {
@@ -641,7 +639,7 @@ public class TrackerClient {
             int ipAddrLen;
             byte[] bIpAddr;
             if (storageIpAddr != null && storageIpAddr.length() > 0) {
-                bIpAddr = storageIpAddr.getBytes(ClientGlobal.g_charset);
+                bIpAddr = storageIpAddr.getBytes(ClientGlobal.charset);
                 if (bIpAddr.length < ProtoCommon.FDFS_IPADDR_SIZE) {
                     ipAddrLen = bIpAddr.length;
                 }
@@ -720,7 +718,7 @@ public class TrackerClient {
         trackerSocket = trackerServer.getSocket();
         OutputStream out = trackerSocket.getOutputStream();
 
-        bs = groupName.getBytes(ClientGlobal.g_charset);
+        bs = groupName.getBytes(ClientGlobal.charset);
         bGroupName = new byte[ProtoCommon.FDFS_GROUP_NAME_MAX_LEN];
 
         if (bs.length <= ProtoCommon.FDFS_GROUP_NAME_MAX_LEN) {
@@ -733,7 +731,7 @@ public class TrackerClient {
         System.arraycopy(bs, 0, bGroupName, 0, len);
 
         int ipAddrLen;
-        byte[] bIpAddr = storageIpAddr.getBytes(ClientGlobal.g_charset);
+        byte[] bIpAddr = storageIpAddr.getBytes(ClientGlobal.charset);
         if (bIpAddr.length < ProtoCommon.FDFS_IPADDR_SIZE) {
             ipAddrLen = bIpAddr.length;
         }
@@ -766,7 +764,7 @@ public class TrackerClient {
      * @throws IOException ioex
      */
     public boolean deleteStorage(String groupName, String storageIpAddr) throws IOException {
-        return this.deleteStorage(ClientGlobal.g_tracker_group, groupName, storageIpAddr);
+        return this.deleteStorage(ClientGlobal.trackerGroup, groupName, storageIpAddr);
     }
 
     /**
