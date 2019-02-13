@@ -1,4 +1,4 @@
-Version 1.29.2  2019-02-13
+Version 1.29.3  2019-02-13
   * logging fastdfs call response code
 
 Version 1.29.1  2019-02-13
