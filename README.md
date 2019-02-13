@@ -59,8 +59,8 @@ tracker_server = 10.0.11.249:22122
 ```
 
 
-注1：tracker_server指向您自己IP地址和端口，1-n个
-注2：除了tracker_server，其它配置项都是可选的
+* 注1：tracker_server指向您自己IP地址和端口，1-n个
+* 注2：除了tracker_server，其它配置项都是可选的
 
 
 ## Load configuration sample
@@ -106,13 +106,13 @@ System.out.println("ClientGlobal.configInfo(): " + ClientGlobal.configInfo());
     
 Output：
 
->	ClientGlobal.configInfo(): {
->	  g_connect_timeout(ms) = 5000
->	  g_network_timeout(ms) = 30000
->	  g_charset = UTF-8
->	  g_anti_steal_token = false
->	  g_secret_key = FastDFS1234567890
->	  g_tracker_http_port = 80
->	  trackerServers = 10.0.11.101:22122,10.0.11.102:22122
->	}
+	ClientGlobal.configInfo(): {
+	  g_connect_timeout(ms) = 5000
+	  g_network_timeout(ms) = 30000
+	  g_charset = UTF-8
+	  g_anti_steal_token = false
+	  g_secret_key = FastDFS1234567890
+	  g_tracker_http_port = 80
+	  trackerServers = 10.0.11.101:22122,10.0.11.102:22122
+	}
 
