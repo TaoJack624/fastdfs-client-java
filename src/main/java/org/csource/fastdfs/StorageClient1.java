@@ -59,7 +59,7 @@ public class StorageClient1 extends StorageClient {
      * @return file id(including group name and filename) if success, <br>
      * return null if fail
      * @throws IOException ioex
-     * @throws FastdfsException myex
+     * @throws FastdfsException fastex
      */
     public String uploadFile1(String local_filename, String file_ext_name, NameValuePair[] meta_list)
             throws IOException, FastdfsException {
@@ -82,7 +82,7 @@ public class StorageClient1 extends StorageClient {
      * @return file id(including group name and filename) if success, <br>
      * return null if fail
      * @throws IOException ioex
-     * @throws FastdfsException myex
+     * @throws FastdfsException fastex
      */
     public String uploadFile1(String group_name,
                               String local_filename,
@@ -106,7 +106,7 @@ public class StorageClient1 extends StorageClient {
      * @return file id(including group name and filename) if success, <br>
      * return null if fail
      * @throws IOException ioex
-     * @throws FastdfsException myex
+     * @throws FastdfsException fastex
      */
     public String uploadFile1(byte[] file_buff, String file_ext_name, NameValuePair[] meta_list)
             throws IOException, FastdfsException {
@@ -129,7 +129,7 @@ public class StorageClient1 extends StorageClient {
      * @return file id(including group name and filename) if success, <br>
      * return null if fail
      * @throws IOException ioex
-     * @throws FastdfsException myex
+     * @throws FastdfsException fastex
      */
     public String uploadFile1(String group_name, byte[] file_buff, String file_ext_name, NameValuePair[] meta_list)
             throws IOException, FastdfsException {
@@ -153,7 +153,7 @@ public class StorageClient1 extends StorageClient {
      * @return file id(including group name and filename) if success, <br>
      * return null if fail
      * @throws IOException ioex
-     * @throws FastdfsException myex
+     * @throws FastdfsException fastex
      */
     public String uploadFile1(String group_name,
                               long file_size,
@@ -178,7 +178,7 @@ public class StorageClient1 extends StorageClient {
      * @return file id(including group name and filename) if success, <br>
      * return null if fail
      * @throws IOException ioex
-     * @throws FastdfsException myex
+     * @throws FastdfsException fastex
      */
     public String uploadAppenderFile1(String local_filename, String file_ext_name, NameValuePair[] meta_list)
             throws IOException, FastdfsException {
@@ -201,7 +201,7 @@ public class StorageClient1 extends StorageClient {
      * @return file id(including group name and filename) if success, <br>
      * return null if fail
      * @throws IOException ioex
-     * @throws FastdfsException myex
+     * @throws FastdfsException fastex
      */
     public String uploadAppenderFile1(String group_name,
                                       String local_filename,
@@ -225,7 +225,7 @@ public class StorageClient1 extends StorageClient {
      * @return file id(including group name and filename) if success, <br>
      * return null if fail
      * @throws IOException ioex
-     * @throws FastdfsException myex
+     * @throws FastdfsException fastex
      */
     public String uploadAppenderFile1(byte[] file_buff, String file_ext_name, NameValuePair[] meta_list)
             throws IOException, FastdfsException {
@@ -248,7 +248,7 @@ public class StorageClient1 extends StorageClient {
      * @return file id(including group name and filename) if success, <br>
      * return null if fail
      * @throws IOException ioex
-     * @throws FastdfsException myex
+     * @throws FastdfsException fastex
      */
     public String uploadAppenderFile1(String group_name,
                                       byte[] file_buff,
@@ -274,7 +274,7 @@ public class StorageClient1 extends StorageClient {
      * @return file id(including group name and filename) if success, <br>
      * return null if fail
      * @throws IOException ioex
-     * @throws FastdfsException myex
+     * @throws FastdfsException fastex
      */
     public String uploadAppenderFile1(String group_name,
                                       long file_size,
@@ -301,7 +301,7 @@ public class StorageClient1 extends StorageClient {
      * @return file id(including group name and filename) if success, <br>
      * return null if fail
      * @throws IOException ioex
-     * @throws FastdfsException myex
+     * @throws FastdfsException fastex
      */
     public String uploadFile1(String master_file_id,
                               String prefix_name,
@@ -334,7 +334,7 @@ public class StorageClient1 extends StorageClient {
      * @return file id(including group name and filename) if success, <br>
      * return null if fail
      * @throws IOException ioex
-     * @throws FastdfsException myex
+     * @throws FastdfsException fastex
      */
     public String uploadFile1(String master_file_id,
                               String prefix_name,
@@ -369,7 +369,7 @@ public class StorageClient1 extends StorageClient {
      * @return file id(including group name and filename) if success, <br>
      * return null if fail
      * @throws IOException ioex
-     * @throws FastdfsException myex
+     * @throws FastdfsException fastex
      */
     public String uploadFile1(String master_file_id,
                               String prefix_name,
@@ -405,7 +405,7 @@ public class StorageClient1 extends StorageClient {
      * @return file id(including group name and filename) if success, <br>
      * return null if fail
      * @throws IOException ioex
-     * @throws FastdfsException myex
+     * @throws FastdfsException fastex
      */
     public String uploadFile1(String master_file_id,
                               String prefix_name,
@@ -435,7 +435,7 @@ public class StorageClient1 extends StorageClient {
      * @param local_filename   local filename to append
      * @return 0 for success, != 0 for error (error no)
      * @throws IOException ioex
-     * @throws FastdfsException myex
+     * @throws FastdfsException fastex
      */
     public int appendFile1(String appender_file_id, String local_filename) throws IOException, FastdfsException {
         String[] parts = new String[2];
@@ -454,7 +454,7 @@ public class StorageClient1 extends StorageClient {
      * @param file_buff        file content/buff
      * @return 0 for success, != 0 for error (error no)
      * @throws IOException ioex
-     * @throws FastdfsException myex
+     * @throws FastdfsException fastex
      */
     public int appendFile1(String appender_file_id, byte[] file_buff) throws IOException, FastdfsException {
         String[] parts = new String[2];
@@ -475,7 +475,7 @@ public class StorageClient1 extends StorageClient {
      * @param length           the length of the buffer to append
      * @return 0 for success, != 0 for error (error no)
      * @throws IOException ioex
-     * @throws FastdfsException myex
+     * @throws FastdfsException fastex
      */
     public int appendFile1(String appender_file_id, byte[] file_buff, int offset, int length)
             throws IOException, FastdfsException {
@@ -496,7 +496,7 @@ public class StorageClient1 extends StorageClient {
      * @param callback         the write data callback object
      * @return 0 for success, != 0 for error (error no)
      * @throws IOException ioex
-     * @throws FastdfsException myex
+     * @throws FastdfsException fastex
      */
     public int appendFile1(String appender_file_id, long file_size, UploadCallback callback)
             throws IOException, FastdfsException {
@@ -517,7 +517,7 @@ public class StorageClient1 extends StorageClient {
      * @param local_filename   local filename to append
      * @return 0 for success, != 0 for error (error no)
      * @throws IOException ioex
-     * @throws FastdfsException myex
+     * @throws FastdfsException fastex
      */
     public int modifyFile1(String appender_file_id, long file_offset, String local_filename)
             throws IOException, FastdfsException {
@@ -538,7 +538,7 @@ public class StorageClient1 extends StorageClient {
      * @param file_buff        file content/buff
      * @return 0 for success, != 0 for error (error no)
      * @throws IOException ioex
-     * @throws FastdfsException myex
+     * @throws FastdfsException fastex
      */
     public int modifyFile1(String appender_file_id, long file_offset, byte[] file_buff)
             throws IOException, FastdfsException {
@@ -561,7 +561,7 @@ public class StorageClient1 extends StorageClient {
      * @param buffer_length    the length of buff to modify
      * @return 0 for success, != 0 for error (error no)
      * @throws IOException ioex
-     * @throws FastdfsException myex
+     * @throws FastdfsException fastex
      */
     public int modifyFile1(String appender_file_id,
                            long file_offset,
@@ -586,7 +586,7 @@ public class StorageClient1 extends StorageClient {
      * @param callback         the write data callback object
      * @return 0 for success, != 0 for error (error no)
      * @throws IOException ioex
-     * @throws FastdfsException myex
+     * @throws FastdfsException fastex
      */
     public int modifyFile1(String appender_file_id, long file_offset, long modify_size, UploadCallback callback)
             throws IOException, FastdfsException {
@@ -605,7 +605,7 @@ public class StorageClient1 extends StorageClient {
      * @param file_id the file id(including group name and filename)
      * @return 0 for success, none zero for fail (error code)
      * @throws IOException ioex
-     * @throws FastdfsException myex
+     * @throws FastdfsException fastex
      */
     public int deleteFile1(String file_id) throws IOException, FastdfsException {
         String[] parts = new String[2];
@@ -623,7 +623,7 @@ public class StorageClient1 extends StorageClient {
      * @param appender_file_id the appender file id
      * @return 0 for success, none zero for fail (error code)
      * @throws IOException ioex
-     * @throws FastdfsException myex
+     * @throws FastdfsException fastex
      */
     public int truncateFile1(String appender_file_id) throws IOException, FastdfsException {
         String[] parts = new String[2];
@@ -642,7 +642,7 @@ public class StorageClient1 extends StorageClient {
      * @param truncated_file_size truncated file size
      * @return 0 for success, none zero for fail (error code)
      * @throws IOException ioex
-     * @throws FastdfsException myex
+     * @throws FastdfsException fastex
      */
     public int truncateFile1(String appender_file_id, long truncated_file_size) throws IOException, FastdfsException {
         String[] parts = new String[2];
@@ -660,7 +660,7 @@ public class StorageClient1 extends StorageClient {
      * @param file_id the file id(including group name and filename)
      * @return file content/buffer, return null if fail
      * @throws IOException ioex
-     * @throws FastdfsException myex
+     * @throws FastdfsException fastex
      */
     public byte[] downloadFile1(String file_id) throws IOException, FastdfsException {
         final long file_offset = 0;
@@ -677,7 +677,7 @@ public class StorageClient1 extends StorageClient {
      * @param download_bytes download bytes, 0 for remain bytes from offset
      * @return file content/buff, return null if fail
      * @throws IOException ioex
-     * @throws FastdfsException myex
+     * @throws FastdfsException fastex
      */
     public byte[] downloadFile1(String file_id, long file_offset, long download_bytes)
             throws IOException, FastdfsException {
@@ -697,7 +697,7 @@ public class StorageClient1 extends StorageClient {
      * @param local_filename the filename on local
      * @return 0 success, return none zero errno if fail
      * @throws IOException ioex
-     * @throws FastdfsException myex
+     * @throws FastdfsException fastex
      */
     public int downloadFile1(String file_id, String local_filename) throws IOException, FastdfsException {
         final long file_offset = 0;
@@ -715,7 +715,7 @@ public class StorageClient1 extends StorageClient {
      * @param local_filename the filename on local
      * @return 0 success, return none zero errno if fail
      * @throws IOException ioex
-     * @throws FastdfsException myex
+     * @throws FastdfsException fastex
      */
     public int downloadFile1(String file_id, long file_offset, long download_bytes, String local_filename)
             throws IOException, FastdfsException {
@@ -735,7 +735,7 @@ public class StorageClient1 extends StorageClient {
      * @param callback the callback object, will call callback.recv() when data arrive
      * @return 0 success, return none zero errno if fail
      * @throws IOException ioex
-     * @throws FastdfsException myex
+     * @throws FastdfsException fastex
      */
     public int downloadFile1(String file_id, DownloadCallback callback) throws IOException, FastdfsException {
         final long file_offset = 0;
@@ -753,7 +753,7 @@ public class StorageClient1 extends StorageClient {
      * @param callback       the callback object, will call callback.recv() when data arrive
      * @return 0 success, return none zero errno if fail
      * @throws IOException ioex
-     * @throws FastdfsException myex
+     * @throws FastdfsException fastex
      */
     public int downloadFile1(String file_id, long file_offset, long download_bytes, DownloadCallback callback)
             throws IOException, FastdfsException {
@@ -772,7 +772,7 @@ public class StorageClient1 extends StorageClient {
      * @param file_id the file id(including group name and filename)
      * @return meta info array, return null if fail
      * @throws IOException ioex
-     * @throws FastdfsException myex
+     * @throws FastdfsException fastex
      */
     public NameValuePair[] getMetadata1(String file_id) throws IOException, FastdfsException {
         String[] parts = new String[2];
@@ -796,7 +796,7 @@ public class StorageClient1 extends StorageClient {
      *                  the metadata item not exist, otherwise update it</li></ul>
      * @return 0 for success, !=0 fail (error code)
      * @throws IOException ioex
-     * @throws FastdfsException myex
+     * @throws FastdfsException fastex
      */
     public int setMetadata1(String file_id, NameValuePair[] meta_list, byte op_flag) throws IOException,
             FastdfsException {
@@ -815,7 +815,7 @@ public class StorageClient1 extends StorageClient {
      * @param file_id the file id(including group name and filename)
      * @return FileInfo object for success, return null for fail
      * @throws IOException ioex
-     * @throws FastdfsException myex
+     * @throws FastdfsException fastex
      */
     public FileInfo queryFileInfo1(String file_id) throws IOException, FastdfsException {
         String[] parts = new String[2];
@@ -833,7 +833,7 @@ public class StorageClient1 extends StorageClient {
      * @param file_id the file id(including group name and filename)
      * @return FileInfo object for success, return null for fail
      * @throws IOException ioex
-     * @throws FastdfsException myex
+     * @throws FastdfsException fastex
      */
     public FileInfo getFileInfo1(String file_id) throws IOException, FastdfsException {
         String[] parts = new String[2];

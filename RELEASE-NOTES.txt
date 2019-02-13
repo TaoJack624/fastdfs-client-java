@@ -1,4 +1,10 @@
-Version 1.29.0  2019-02-12
+Version 1.29.2  2019-02-13
+  * logging fastdfs call response code
+
+Version 1.29.1  2019-02-13
+  * Add more logging while uploading file
+
+Version 1.29.0  2019-02-13
   * Camel Case Naming
 
 Version 1.28.0  2019-02-12

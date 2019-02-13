@@ -67,7 +67,7 @@ public class ClientGlobal {
      *
      * @param conf_filename config filename
      * @throws IOException ioex
-     * @throws FastdfsException myex
+     * @throws FastdfsException fastex
      */
     public static void init(String conf_filename) throws IOException, FastdfsException {
         IniFileReader iniReader;
@@ -129,7 +129,7 @@ public class ClientGlobal {
      *                      server的IP和端口用冒号':'分隔
      *                      server之间用逗号','分隔
      * @throws IOException ioex
-     * @throws FastdfsException myex
+     * @throws FastdfsException fastex
      */
     public static void initByProperties(String propsFilePath) throws IOException, FastdfsException {
         Properties props = new Properties();
@@ -180,7 +180,7 @@ public class ClientGlobal {
      *                       server的IP和端口用冒号':'分隔
      *                       server之间用逗号','分隔
      * @throws IOException ioex
-     * @throws FastdfsException myex
+     * @throws FastdfsException fastex
      */
     public static void initByTrackers(String trackerServers) throws IOException, FastdfsException {
         List<InetSocketAddress> list = new ArrayList();

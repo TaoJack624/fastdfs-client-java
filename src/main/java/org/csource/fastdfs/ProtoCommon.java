@@ -452,7 +452,7 @@ public class ProtoCommon {
      * @param prefix_name     the prefix name to generate the slave filename
      * @param ext_name        the extension name of slave filename, null for same as the master extension name
      * @return slave filename string
-     * @throws FastdfsException myex
+     * @throws FastdfsException fastex
      */
     public static String genSlaveFilename(String master_filename, String prefix_name, String ext_name)
             throws FastdfsException {
