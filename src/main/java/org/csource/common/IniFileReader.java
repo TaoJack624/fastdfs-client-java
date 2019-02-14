@@ -116,7 +116,9 @@ public class IniFileReader {
             return default_value;
         }
 
-        return szValue.equalsIgnoreCase("yes") || szValue.equalsIgnoreCase("on") || szValue.equalsIgnoreCase("true") ||
+        return szValue.equalsIgnoreCase("yes") ||
+                szValue.equalsIgnoreCase("on") ||
+                szValue.equalsIgnoreCase("true") ||
                 szValue.equals("1");
     }
 
@@ -158,7 +160,6 @@ public class IniFileReader {
                 if (in != null) {
                     in.close();
                 }
-                //System.out.println("loadFrom...finally...in.close(); done");
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -217,7 +218,6 @@ public class IniFileReader {
                 if (inReader != null) {
                     inReader.close();
                 }
-                //System.out.println("readToParamTable...finally...bufferedReader.close();inReader.close(); done");
             } catch (Exception ex) {
                 ex.printStackTrace();
             }

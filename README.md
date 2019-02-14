@@ -10,14 +10,14 @@ FastDFS Java Client API may be copied only under the terms of the BSD license.
 	<dependency>
 		<groupId>in.clouthink.repack</groupId>
 		<artifactId>fastdfs-client-java</artifactId>
-		<version>1.29.3</version>
+		<version>1.29.4</version>
 	</dependency>
 ```
 
 > for gradle build.gradle
 
 ```gradle
-	compile "in.clouthink.repack:fastdfs-client-java:1.29.3"
+	compile "in.clouthink.repack:fastdfs-client-java:1.29.4"
 ```
 
 ## Configuration sample

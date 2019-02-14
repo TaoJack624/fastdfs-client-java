@@ -46,4 +46,14 @@ public class NameValuePair {
     public void setValue(String value) {
         this.value = value;
     }
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("NameValuePair{");
+        sb.append("name='").append(name).append('\'');
+        sb.append(", value='").append(value).append('\'');
+        sb.append('}');
+        return sb.toString();
+    }
+
 }
